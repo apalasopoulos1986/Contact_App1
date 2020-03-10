@@ -1,0 +1,138 @@
+﻿<!--form used for CRUD-->
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form (ngSubmit)="onSubmit(contactFrm)" [formGroup]="contactFrm">
+
+    <!--<h2>{{data.modalTitle}}</h2>-->
+    <div class="modal-body">
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="nameId">Name</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="nameId"
+                       placeholder="Name (required)"
+                       type="text"
+                       formControlName="name"
+                       [ngClass]="{'is-invalid': (contactFrm.get('name').touched ||
+                                            contactFrm.get('name').dirty) &&
+                                            !contactFrm.get('name').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="contactFrm.get('name').errors?.required">
+                        Please enter your first name.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="surnameId">Surname</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="surnameId"
+                       placeholder="Surname (required)"
+                       type="text"
+                       formControlName="surname"
+                       [ngClass]="{'is-invalid': (contactFrm.get('surname').touched ||
+                                            contactFrm.get('surname').dirty) &&
+                                            !contactFrm.get('surname').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="contactFrm.get('surname').errors?.required">
+                        Please enter your surname.
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="emailId">Email</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="emailId"
+                       type="email"
+                       placeholder="Email (required)"
+                       formControlName="email"
+                       [ngClass]="{'is-invalid': (contactFrm.get('email').touched ||
+                                            contactFrm.get('email').dirty) &&
+                                            !contactFrm.get('email').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="contactFrm.get('email').errors?.required">
+                        Please enter your email.
+                    </span>
+                    <span *ngIf="contactFrm.get('email').errors?.email">
+                        Please enter a valid email
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="addressId">Adress</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="addressId"
+                       type="text"
+                       placeholder="Address"
+                       formControlName="address" />
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="fixedPhoneId">Fixed Phone</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="fixedPhoneId"                      
+                       type="tel"
+                       pattern='^[0-9]{10,14}$'
+                       placeholder="Fixed Phone"
+                       formControlName="fixedPhone"
+                       [ngClass]="{'is-invalid': (contactFrm.get('fixedPhone').touched ||
+                                            contactFrm.get('fixedPhone').dirty) &&
+                                            !contactFrm.get('fixedPhone').valid }"/>
+                <span class="invalid-feedback">
+                    
+                    <span *ngIf="contactFrm.get('fixedPhone').errors?.pattern">
+                        Please enter a valid phone
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="mobilePhoneId">Mobile Phone</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                       id="mobilePhoneId"
+                       type="tel"
+                       pattern='^[0-9]{10,14}$'
+                       placeholder="Mobile Phone (required)"
+                       formControlName="mobilePhone"
+                       [ngClass]="{'is-invalid': (contactFrm.get('mobilePhone').touched ||
+                                            contactFrm.get('mobilePhone').dirty) &&
+                                            !contactFrm.get('mobilePhone').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="contactFrm.get('mobilePhone').errors?.required">
+                        Please enter your mobile phone.
+                    </span>
+                    
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" (click)="activeModal.close()">Cancel</button>&nbsp;
+        <button type="submit" class="btn btn-primary" [disabled]="contactFrm.invalid">{{ modalBtnTitle }}</button>
+    </div>
+
+</form>

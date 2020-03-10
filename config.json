@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "ContactAppConnectionString": "server=(localdb)\\MSSQLLocalDB;Database=ContactsDb;Integrated Security=true;MultipleActiveResultSets=true"
+  }
+}

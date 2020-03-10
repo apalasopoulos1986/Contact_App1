@@ -1,0 +1,54 @@
+﻿<!--initial form list of contacts-->
+
+<div class="spinner" *ngIf="loadingState; else contactlist">
+    <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+    </button>
+</div>
+
+<ng-template class="contactlist" #contactlist>
+    <h2 style="text-align: center;">Contact List</h2>
+    <div class="container">
+        <div class="row py-2">
+            <button title="Create" class="btn btn-primary" color="accent" (click)="addContact()">Create</button>
+        </div>
+       
+        <div class="row py-2">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Fixed Phone</th>
+                        <th scope="col">Mobile Phone</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let contact of contacts">
+                        <tr>
+
+                            <td>{{ contact.name}}</td>
+                            <td>{{ contact.surname}}</td>
+                            <td>{{ contact.email}}</td>
+                            <td>{{ contact.address}}</td>
+                            <td>{{ contact.fixedPhone}}</td>
+                            <td>{{ contact.mobilePhone}}</td>
+                            <td><button title="Edit" class="btn btn-primary" (click)="editContact(contact.id)">Edit</button></td>
+                            <td><button title="Delete" class="btn btn-primary" (click)="deleteContact(contact.id)">Delete</button></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
